@@ -37,6 +37,6 @@ public class TableDAO {
 			e.printStackTrace();
 		}
 		
-		return -1; // DB실패
+		return -2; // DB실패
 	}
 }

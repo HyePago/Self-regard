@@ -47,7 +47,7 @@ public class UserDAO {
 	}
 	
 	public int selectNickname(String nickname) {
-		String SQL = "SELECT * FROM USER WHERE userNickname = ?";
+		String SQL = "SELECT userPassword FROM USER WHERE userNickname = ?";
 		
 		try {
 			pstmt = conn.prepareStatement(SQL);
@@ -70,7 +70,7 @@ public class UserDAO {
 		if(login(user.getUserID(), user.getUserPassword()) != -1) {
 			return -1;
 		}
-		if(selectNickname(user.getUserNickname()) != -1) {
+		if(selectNickname(user.getUserNickname()) == 1) {
 			return -2;
 		}
 		
