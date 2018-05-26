@@ -45,7 +45,7 @@
 				%>
 						<tr>
 							<td><%= list.get(i).getID() %></td>
-							<td><a href="view.jsp?ID=<%= list.get(i).getID() %>"><%= list.get(i).getTitle() %></a></td>
+							<td><a href="diaryView.jsp?ID=<%= list.get(i).getID() %>"><%= list.get(i).getTitle() %></a></td>
 							<td><%= list.get(i).getDate().substring(0, 11) + list.get(i).getDate().substring(11, 13) + "시 " + list.get(i).getDate().substring(14, 16) + "분" %></td>
 						</tr>
 				<%
@@ -60,11 +60,11 @@
 		<%
 			} if(diaryDAO.nextPage(userID ,pageNumber + 1)){
 		%>
-			<a href="bbs.jsp?pageNumber=<%= pageNumber + 1 %>"> 다음 </a>
+			<a href="diary.jsp?pageNumber=<%= pageNumber + 1 %>"> 다음 </a>
 		<%
 			}
 		%>
 		
-		<a href="write.jsp">글쓰기</a>
+		<a href="diaryWrite.jsp">글쓰기</a>
 	</div>
 </html>
