@@ -23,10 +23,57 @@ public class UserDAO {
 	}
 	
 	public int login(String userID, String userPassword) {
+		String SQL = "SELECT userPassword FROM USER WHERE userID = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, userID);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				if(rs.getString(1).equals(userPassword)) {
+					return 1; // 로그인 성공
+				} else {
+					return 0; // 비밀번호 불일치
+				}
+			} 
+			
+			return -1; // 아이디 존재 X
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return -2; // DB 오류
+	}
+	
+	public int selectNickname(String nickname) {
+		String SQL = "SELECT * FROM USER WHERE userNickname = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, nickname);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				return 1; // 닉네임 존재
+			} 
+			
+			return -1; // 닉네임 존재 X
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
 		return -2; // DB 오류
 	}
 	
 	public int join(User user) {
+		if(login(user.getUserID(), user.getUserPassword()) != -1) {
+			return -1;
+		}
+		if(selectNickname(user.getUserNickname()) != -1) {
+			return -2;
+		}
+		
 		String SQL = "INSERT INTO user (userID, userPassword, userName, userNickname, userGender, userBirth) VALUES (?, ?, ?, ?, ?, ?);";
 		
 		try {

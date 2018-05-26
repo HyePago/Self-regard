@@ -11,6 +11,12 @@
 	<%
 		request.setCharacterEncoding("UTF-8");
 		String contentPage = request.getParameter("CONTENTPAGE");
+		
+		String userID = null;
+		
+		if(session.getAttribute("userID") != null){
+			userID = (String) session.getAttribute("userID");
+		}
 	%>
   <!--위에 고정 메뉴바 -->
   <header class="sidebar">
@@ -20,11 +26,18 @@
 	 </center>
 	</div>
 	<nav>
+		<% if(userID == null){ %>
         <ul>
-            <li><a href="#">PERSONAL DIATY</a></li>
-			 <li><a href="#">LOGIN</a></li>
+            <li><a href="login.jsp">PERSONAL DIATY</a></li>
+			<li><a href="login.jsp">LOGIN</a></li>
             <li><a href="join.jsp">JOIN US</a></li>
-        </ul>    
+        </ul>   
+        <% } else { %>
+        <ul>
+           	<li><a href="diary.jsp">PERSONAL DIATY</a></li>
+			<li><a href="logout.jsp">LOGOUT</a></li>
+        </ul> 
+        <% } %> 
     </nav>   
 	</header>
 	<!-- 대나무숲 메뉴들-->

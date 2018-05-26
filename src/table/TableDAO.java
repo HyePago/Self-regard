@@ -28,7 +28,7 @@ public class TableDAO {
 	
 		String SQL = "CREATE TABLE " + userID + " (ID int primary key auto_increment, "
 				+ "Title text not null, Date timestamp default current_timestamp, "
-				+ "Content text not null, Available int default 0);";
+				+ "Content text not null, Available int default 1);";
 		
 		try {
 			pstmt = conn.prepareStatement(SQL);

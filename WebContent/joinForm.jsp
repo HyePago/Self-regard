@@ -7,17 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<!-- 
-
-이름
-아이디
-비밀번호
-성별
-닉네임
-생년월일
-가입날짜
-
- -->
 	<div class="joinForm_div">
 		<form method="post" action="joinProc.jsp">
 			<h3 style="text-align: center;">회원가입 화면</h3>

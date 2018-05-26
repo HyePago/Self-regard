@@ -58,6 +58,12 @@
 				script.println("alert('table 생성 실패.')"); // 데이터베이스 오류
 				script.println("history.back()");
 				script.println("</script>");
+			} else if(result == -2){
+				PrintWriter script = response.getWriter();
+				script.println("<script>");
+				script.println("alert('이미 존재하는 닉네임입니다.')");
+				script.println("history.back()");
+				script.println("</script>");
 			} else {
 				session.setAttribute("userID", user.getUserID());
 				PrintWriter script = response.getWriter();
